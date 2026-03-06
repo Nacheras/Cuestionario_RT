@@ -350,7 +350,7 @@ function confirmarNombre(){
     let diagCuerpo = "";
     let recomendaciones = [];
 
-    if(res.as >= 60) {
+    if(res.as >= res.pa && res.as >= res.ag){
         diagTitulo = "PERFIL PREDOMINANTE: COMUNICADOR ASERTIVO";
         diagCuerpo = ["ESTILO ASERTIVO ¿Qué significa?",
 
@@ -383,7 +383,8 @@ function confirmarNombre(){
             "• La asertividad bien usada es fortaleza.",
             "• Mal gestionada puede convertirse en sobreesfuerzo emocional."
         ];
-    } else if(res.pa > res.ag) {
+    } 
+    else if(res.pa >= res.as && res.pa >= res.ag){
         diagTitulo = "PERFIL PREDOMINANTE: COMUNICADOR PASIVO-RESERVADO";
         diagCuerpo = ["ESTILO PASIVO ¿Qué significa?",
             
