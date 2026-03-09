@@ -284,29 +284,33 @@ function confirmarNombre(){
     dibujarDisenoPagina(doc);
     
     //1. CABECERA CORPORATIVA 
-    doc.setFillColor(0, 51, 102); 
-    doc.rect(0, 0, 210, 45, 'F');
-    
+   
+    // LOGO ARRIBA DERECHA
     if (miLogoBase64) {
         try {
-            const anchoDeseado = 35; 
+            const anchoDeseado = 30;
             const imgProps = doc.getImageProperties(miLogoBase64);
             const altoProporcional = (imgProps.height * anchoDeseado) / imgProps.width;
-            const yCentrado = (40 - altoProporcional) / 2;
-            doc.addImage(miLogoBase64, 'PNG', 105 - (anchoDeseado / 2), yCentrado, anchoDeseado, altoProporcional);
+
+            doc.addImage(miLogoBase64, 'PNG', 173, 5, anchoDeseado, altoProporcional);
+
         } catch (e) {
             console.warn("Error con el logo:", e);
         }
     }
 
-    doc.setTextColor(255, 255, 255);
+    // TITULO GRANDE CENTRADO
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.setTextColor(0,51,102);
+
+    doc.text("INFORME ESTRATÉGICO DE ESTILO COMUNICATIVO", 105, 31, {align: 'center'});
+
+    // AÑADIR NOMBRE
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.text("INFORME ESTRATÉGICO DE PERFIL COMUNICATIVO", 105, 36, {align: 'center'});
-    //Añadir nombre
-    doc.setFontSize(12);
-    doc.setTextColor(255,255,255);
-    doc.text(nombreInforme, 105, 43, {align: 'center'});
+    doc.setFontSize(14);
+
+    doc.text(nombreInforme, 105, 41, {align: 'center'});
 
     //SECCIÓN 1: ANÁLISIS ESTADÍSTICO
     doc.setTextColor(0, 51, 102);
