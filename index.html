@@ -137,6 +137,35 @@
             text-align: left;        /* Que el texto de las viñetas quede alineado a la izquierda */
             gap: 6px;
         }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px; /* menos espacio para móviles */
+                margin: 20px 10px;
+                border-radius: 12px;
+            }
+
+            .btn-group {
+                flex-direction: column; /* poner PDF/GRATIS y Descubre en vertical */
+                align-items: flex-start; /* mantener alineación izquierda */
+                gap: 20px;
+            }
+
+            .btn-right {
+                width: 100%; /* que ocupe todo el ancho de la columna */
+            }
+
+            .btn-left button {
+                width: 100%; /* botón PDF ocupe todo el ancho */
+            }
+
+            .question p {
+                font-size: 16px; /* texto más legible en pantallas pequeñas */
+            }
+
+            label {
+                font-size: 14px;
+            }
+}
     </style>
 </head>
 
