@@ -481,6 +481,9 @@ function confirmarNombre(){
     let diagTitulo = "";
     let diagCuerpo = "";
     let recomendaciones = [];
+    //Recuadro azul del punto 2
+    doc.setFillColor(238, 242, 255);
+    doc.roundedRect(20, 150, 170, 10, 1, 1, 'F');
 
     if(res.as >= res.pa && res.as >= res.ag){
         diagTitulo = "PERFIL PREDOMINANTE: COMUNICADOR ASERTIVO";
@@ -525,14 +528,14 @@ else if(res.pa >= res.as && res.pa >= res.ag){
         doc.setDrawColor(226, 232, 240);
         doc.line(20, 143, 190, 143);
 
-        let curY = 153;
+        let curY = 156;
         doc.setFontSize(11);
         doc.setFont("helvetica", "normal");
         doc.setTextColor(51, 65, 85);
         doc.text("El estilo pasivo refleja una tendencia a expresarte con discreción y prudencia:", 30, curY);
 
         curY += 12;
-        doc.setFontSize(9);
+        doc.setFontSize(11);
         doc.setTextColor(44, 123, 185);
         // Iconos: Flecha, Exclamación, Puzzle
         doc.setFillColor(20, 184, 166); doc.triangle(25, curY-2, 25, curY+4, 30, curY+1, 'F');
@@ -546,20 +549,41 @@ else if(res.pa >= res.as && res.pa >= res.ag){
         doc.setFont("helvetica", "bold");
         doc.setTextColor(0, 51, 102);
         doc.text("Puntos positivos:", 30, curY);
-        doc.text("Puntos negativos:", 100, curY);
+        doc.text("Puntos negativos:", 113, curY);
 
         doc.setFont("helvetica", "normal");
-        doc.setFontSize(9);
+        doc.setFontSize(10);
         doc.setTextColor(71, 85, 105);
         let listY = curY + 8;
         // Checks verdes
-        const pos = ["Generas calma.", "No eres invasivo.", "Escuchas más.", "Eres prudente."];
-        pos.forEach(t => { doc.setTextColor(34, 197, 94); doc.text("✔", 30, listY); doc.setTextColor(71, 85, 105); doc.text(t, 35, listY); listY += 6; });
-        listY = curY + 8;
+        const pos = ["Generas calma.", "No eres invasivo.", "Escuchas más de lo que hablas.", "Sueles ser prudente antes de reaccionar."];
+        pos.forEach(t => { 
+            // Dibujamos el TICK (✔) con dos líneas verdes
+            doc.setDrawColor(34, 197, 94);
+            doc.setLineWidth(0.4);
+            doc.line(30, listY - 1, 31.5, listY);      // palito corto
+            doc.line(31.5, listY, 33.5, listY - 3);  // palito largo
+            
+            doc.setTextColor(71, 85, 105); 
+            doc.text(t, 36, listY); 
+            listY += 6; 
+        });
+        listY = curY + 8; // Reiniciamos para la columna de la derecha
         // X rojas
-        const neg = ["Acumulas frustración.", "Otros deciden por ti.", "Cedes demasiado."];
-        neg.forEach(t => { doc.setTextColor(239, 68, 68); doc.text("✘", 100, listY); doc.setTextColor(71, 85, 105); doc.text(t, 105, listY); listY += 6; });
-
+        const neg = ["Puedes acumular frustración.", "A veces no se tienen en cuenta tus necesidades.", "Otros pueden decidir por ti.", "Puedes sentir que “cedes demasiado”."];
+        neg.forEach(t => { 
+            // Dibujamos la X (✘) con dos líneas rojas
+            doc.setDrawColor(239, 68, 68);
+            doc.setLineWidth(0.4);
+            doc.line(113, listY - 3, 116, listY); // diagonal 1
+            doc.line(116, listY - 3, 113, listY); // diagonal 2
+            
+            doc.setTextColor(71, 85, 105); 
+            // Usamos splitText para que las frases largas de la derecha no se corten
+            const splitNeg = doc.splitTextToSize(t, 80);
+            doc.text(splitNeg, 119, listY); 
+            listY += (splitNeg.length * 6); 
+        });
         
 }
 
@@ -606,8 +630,7 @@ else if(res.pa >= res.as && res.pa >= res.ag){
     }
 
 
-    doc.setFillColor(238, 242, 255);
-    doc.roundedRect(20, 150, 170, 10, 1, 1, 'F');
+
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
     doc.setTextColor(79, 70, 229);
@@ -677,7 +700,7 @@ else if(res.pa >= res.as && res.pa >= res.ag){
         doc.roundedRect(30, planY - 5, 8, 8, 2, 2, 'F');
         doc.setTextColor(255, 255, 255);
         doc.setFont("helvetica", "bold");
-        doc.text("1", 33, planY + 1);
+        doc.text("1", 32.9, planY + 0.4);
 
         // Texto al lado del 1
         doc.setTextColor(33, 150, 243);
@@ -706,12 +729,21 @@ else if(res.pa >= res.as && res.pa >= res.ag){
 
         planY += (splitDi.length * 6) + 6;
         doc.setFont("helvetica", "normal");
-        doc.text("• ", 35, planY);
+        doc.text("• ", 33, planY);
         doc.setFont("helvetica", "bold");
-        doc.text("Regla práctica:", 38, planY);
+        doc.text("Regla práctica:", 36, planY);
+        // El resto del texto con salto de línea automático
         doc.setFont("helvetica", "normal");
-        doc.text("Si das más de 15 segundos de explicación, probablemente te estés justificando de más.", 70, planY);
+        doc.setTextColor(51, 65, 85);
+        const textoRegla = "Si das más de 15 segundos de explicación, probablemente te estés justificando de más.";
+        
+        // Dividimos el texto para que quepa en un ancho de 125mm
+        const lineasRegla = doc.splitTextToSize(textoRegla, 125);
+        doc.text(lineasRegla, 65, planY);
 
+        // Calculamos cuánto espacio ocupó para actualizar planY por si añades algo después
+        planY += (lineasRegla.length * 5);
+        
     } 
     else{
 
@@ -725,20 +757,19 @@ else if(res.pa >= res.as && res.pa >= res.ag){
 
     }
     //SECCIÓN 4: CONCLUSIÓN FINAL
-        planY += 10;
-
-        // Control de salto de página
-        if (planY > 220) {
-            doc.addPage();
-            dibujarDisenoPagina(doc);
-            planY = 30;
-        }
-
-        // Título principal
-        doc.setTextColor(0, 0, 0);
+        planY += 20; // Espacio respecto a la sección anterior
+        if (planY > 240) { doc.addPage(); planY = 30; if (typeof dibujarDisenoPagina === 'function') dibujarDisenoPagina(doc); }
+        
+        // Título con el mismo estilo que el punto 2 y 3
+        doc.setTextColor(0, 51, 102);
         doc.setFont("helvetica", "bold");
-        doc.setFontSize(16);
-        doc.text("4. Conclusión", 20, planY);
+        doc.setFontSize(17);
+        doc.text("4. Conclusión", 30, planY);
+        
+        // La franja/línea de abajo
+        doc.setDrawColor(226, 232, 240);
+        doc.setLineWidth(0.5);
+        doc.line(20, planY + 3, 190, planY + 3);
 
         planY += 15;
 
@@ -746,7 +777,7 @@ else if(res.pa >= res.as && res.pa >= res.ag){
         const colorTextoAzul = [44, 123, 185]; // Azul similar a la imagen
         const xIcono = 25;
         const xTexto = 38;
-        doc.setFontSize(13);
+        doc.setFontSize(10);
         doc.setFont("helvetica", "normal");
 
         // --- ITEM 1: MICRO ROJO ---
