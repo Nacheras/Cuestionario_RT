@@ -165,7 +165,7 @@
             label {
                 font-size: 14px;
             }
-}
+    }
     </style>
 </head>
 
@@ -443,7 +443,7 @@ function confirmarNombre(){
 
     // AÑADIR NOMBRE
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(14);
+    doc.setFontSize(20);
 
     doc.text(nombreInforme, 105, 41, {align: 'center'});
 
@@ -457,9 +457,9 @@ function confirmarNombre(){
     doc.line(20, 68, 190, 68); // Línea debajo del título 1
 
     const styles = [
-        { label: "Estilo Asertivo", value: res.as, color: [16, 185, 129] },
-        { label: "Estilo Pasivo", value: res.pa, color: [100, 116, 139] },
-        { label: "Estilo Agresivo", value: res.ag, color: [239, 68, 68] }
+    { label: "Estilo Pasivo", value: res.pa, color: [100, 116, 139] },
+    { label: "Estilo Asertivo", value: res.as, color: [16, 185, 129] },
+    { label: "Estilo Agresivo", value: res.ag, color: [239, 68, 68] }
     ];
 
     let yPos = 85;
@@ -477,13 +477,6 @@ function confirmarNombre(){
         yPos += 15;
     });
 
-    //SECCIÓN 2: INTERPRETACIÓN DE PERFIL
-    doc.setTextColor(0, 51, 102);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(16);
-    doc.text("2. Interpretación de Perfil", 30, 140);
-    doc.setDrawColor(226, 232, 240);
-    doc.line(20, 143, 190, 143); // Línea debajo del título 2
 
     let diagTitulo = "";
     let diagCuerpo = "";
@@ -523,47 +516,54 @@ function confirmarNombre(){
             "• Mal gestionada puede convertirse en sobreesfuerzo emocional."
         ];
     } 
-    else if(res.pa >= res.as && res.pa >= res.ag){
-        diagTitulo = "PERFIL PREDOMINANTE: COMUNICADOR PASIVO-RESERVADO";
-        diagCuerpo = ["ESTILO PASIVO ¿Qué significa?",
-            
-                "- Tiendes a priorizar la armonía y a evitar el conflicto.",
-                "- Te cuesta imponer tu criterio si eso puede generar tensión.",
-                "- Muchas veces prefieres adaptarte antes que incomodar.",
+else if(res.pa >= res.as && res.pa >= res.ag){
+// --- PUNTO 2 (Imagen 2) ---
+        doc.setTextColor(0, 51, 102);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(17);
+        doc.text("2. Estilo de comunicación pasivo", 30, 140);
+        doc.setDrawColor(226, 232, 240);
+        doc.line(20, 143, 190, 143);
 
-                "No es debilidad. Es una forma de proteger la relación.",
-                "",
-                "• Puntos positivos:",
+        let curY = 153;
+        doc.setFontSize(11);
+        doc.setFont("helvetica", "normal");
+        doc.setTextColor(51, 65, 85);
+        doc.text("El estilo pasivo refleja una tendencia a expresarte con discreción y prudencia:", 30, curY);
 
-                " - Generas calma.",
+        curY += 12;
+        doc.setFontSize(9);
+        doc.setTextColor(44, 123, 185);
+        // Iconos: Flecha, Exclamación, Puzzle
+        doc.setFillColor(20, 184, 166); doc.triangle(25, curY-2, 25, curY+4, 30, curY+1, 'F');
+        doc.text(doc.splitTextToSize("Tiendes a priorizar la armonía y a evitar el conflicto.", 45), 33, curY);
+        doc.setFillColor(239, 68, 68); doc.rect(82, curY-3, 1.5, 4, 'F'); doc.circle(82.7, curY+3, 0.8, 'F');
+        doc.text(doc.splitTextToSize("Te cuesta imponer tu criterio si eso puede generar tensión.", 45), 88, curY);
+        doc.setFillColor(234, 179, 8); doc.roundedRect(142, curY-2, 5, 5, 1, 1, 'F');
+        doc.text(doc.splitTextToSize("Muchas veces prefieres adaptarte antes que incomodar.", 42), 150, curY);
 
-                " - No eres invasivo.",
+        curY += 22;
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(0, 51, 102);
+        doc.text("Puntos positivos:", 30, curY);
+        doc.text("Puntos negativos:", 100, curY);
 
-                " - Escuchas más de lo que hablas.",
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9);
+        doc.setTextColor(71, 85, 105);
+        let listY = curY + 8;
+        // Checks verdes
+        const pos = ["Generas calma.", "No eres invasivo.", "Escuchas más.", "Eres prudente."];
+        pos.forEach(t => { doc.setTextColor(34, 197, 94); doc.text("✔", 30, listY); doc.setTextColor(71, 85, 105); doc.text(t, 35, listY); listY += 6; });
+        listY = curY + 8;
+        // X rojas
+        const neg = ["Acumulas frustración.", "Otros deciden por ti.", "Cedes demasiado."];
+        neg.forEach(t => { doc.setTextColor(239, 68, 68); doc.text("✘", 100, listY); doc.setTextColor(71, 85, 105); doc.text(t, 105, listY); listY += 6; });
 
-                " - Sueles ser prudente antes de reaccionar.",
-                "",
-                "• Puntos negativos:",
+        
+}
 
-                " - Puedes acumular frustración.",
-
-                " - A veces no se tienen en cuenta tus necesidades.",
-
-                " - Otros pueden decidir por ti.",
-
-                " - Puedes sentir que “cedes demasiado”."
-        ]
-        recomendaciones = [
-            "• El objetivo no es que cambies tu personalidad ni que te vuelvas más duro/a.",
-            "• El objetivo es acercarte progresivamente al estilo asertivo: poder expresar lo que piensas y",
-            "  necesitas sin sentir culpa y sin generar un conflicto innecesario.",
-            "• Se trata de ocupar tu espacio sin dejar de ser tú.",
-            "",
-            "",
-            "",
-
-        ];
-    } else {
+    else {
         diagTitulo = "PERFIL PREDOMINANTE: COMUNICADOR AGRESIVO-DIRECTO";
         diagCuerpo = ["ESTILO AGRESIVO ¿Qué significa?",
 
@@ -605,6 +605,7 @@ function confirmarNombre(){
         ];
     }
 
+
     doc.setFillColor(238, 242, 255);
     doc.roundedRect(20, 150, 170, 10, 1, 1, 'F');
     doc.setFont("helvetica", "bold");
@@ -616,6 +617,13 @@ function confirmarNombre(){
     doc.setTextColor(51, 65, 85);
     const splitDiag = doc.splitTextToSize(diagCuerpo, 170);
     doc.text(splitDiag, 30, 170, { lineHeightFactor: 1.6 });
+    if(res.pa >= res.as && res.pa >= res.ag){
+
+    let colY = 210;
+
+
+
+}
 
     // calcular dónde termina el texto anterior
     let alturaTexto = doc.getTextDimensions(splitDiag).h;
@@ -624,99 +632,163 @@ function confirmarNombre(){
     doc.addPage();
     dibujarDisenoPagina(doc);
 
-    //SECCIÓN 3: PLAN DE ACCIÓN RECOMENDADO
+// SECCIÓN 3: PLAN DE ACCIÓN / CONSEJOS
     doc.setTextColor(0, 51, 102);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(16);
-    doc.text("3. Plan de Acción Recomendado", 30, inicioSeccion3);
+    
+    // Cambiamos el título si es pasivo
+    let tituloSec3 = (res.pa >= res.as && res.pa >= res.ag) ? "3. Consejos" : "3. Plan de Acción Recomendado";
+    doc.text(tituloSec3, 30, inicioSeccion3);
 
     doc.setDrawColor(226, 232, 240);
     doc.line(20, inicioSeccion3 + 3, 190, inicioSeccion3 + 3);
 
     let planY = inicioSeccion3 + 15;
-    recomendaciones.forEach(rec => {
-        doc.setFont("helvetica", "normal");
+
+    // --- DISEÑO ESPECÍFICO PARA PERFIL PASIVO ---
+    if (res.pa >= res.as && res.pa >= res.ag) {
         doc.setFontSize(11);
-        doc.setTextColor(71, 85, 105);
-        doc.text(rec, 35, planY);
+        doc.setTextColor(51, 65, 85);
+        doc.setFont("helvetica", "normal");
+        
+        doc.text("El objetivo no es que cambies tu personalidad ni que te vuelvas más duro, sino", 30, planY);
+        planY += 6;
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(0, 51, 102);
+        doc.text("acercarte progresivamente al estilo asertivo:", 30, planY);
+
         planY += 10;
-    });
+        doc.setTextColor(44, 123, 185); // Azul de la imagen
+        doc.setFont("helvetica", "italic");
+        const bullet1 = "• Poder expresar lo que piensas y necesitas sin sentir culpa y sin generar un conflicto innecesario.";
+        const splitBullet = doc.splitTextToSize(bullet1, 160);
+        doc.text(splitBullet, 35, planY);
+        
+        planY += (splitBullet.length * 6) + 4;
+        doc.setTextColor(51, 65, 85);
+        doc.setFont("helvetica", "normal");
+        doc.text("Se trata de ocupar tu espacio sin dejar de ser tú.", 30, planY);
 
+        planY += 15;
+        
+        // Dibujo del cuadrado azul con el "1"
+        doc.setFillColor(33, 150, 243);
+        doc.roundedRect(30, planY - 5, 8, 8, 2, 2, 'F');
+        doc.setTextColor(255, 255, 255);
+        doc.setFont("helvetica", "bold");
+        doc.text("1", 33, planY + 1);
+
+        // Texto al lado del 1
+        doc.setTextColor(33, 150, 243);
+        doc.text("Practica el \"no\" corto", 42, planY);
+        doc.setFont("helvetica", "normal");
+        doc.setTextColor(100, 116, 139);
+        doc.text("(sin justificarte de más)", 85, planY);
+
+        planY += 12;
+        doc.setTextColor(0, 51, 102);
+        doc.setFont("helvetica", "bold");
+        doc.text("En lugar de:", 30, planY);
+        doc.setFont("helvetica", "normal");
+        doc.setTextColor(51, 65, 85);
+        doc.text(" “Bueno... es que no sé... igual podría... aunque estoy un poco liado...”", 55, planY);
+
+        planY += 7;
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(0, 51, 102);
+        doc.text("Di:", 30, planY);
+        doc.setFont("helvetica", "normal");
+        doc.setTextColor(51, 65, 85);
+        const textoDi = "“No me viene bien.” “Prefiero no hacerlo.” “Gracias por la propuesta pero en este momento no puedo”. Y para ahí.";
+        const splitDi = doc.splitTextToSize(textoDi, 150);
+        doc.text(splitDi, 38, planY);
+
+        planY += (splitDi.length * 6) + 6;
+        doc.setFont("helvetica", "normal");
+        doc.text("• ", 35, planY);
+        doc.setFont("helvetica", "bold");
+        doc.text("Regla práctica:", 38, planY);
+        doc.setFont("helvetica", "normal");
+        doc.text("Si das más de 15 segundos de explicación, probablemente te estés justificando de más.", 70, planY);
+
+    } 
+    else{
+
+        recomendaciones.forEach(rec => {
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(11);
+            doc.setTextColor(71, 85, 105);
+            doc.text(rec, 35, planY);
+            planY += 10;
+        });
+
+    }
     //SECCIÓN 4: CONCLUSIÓN FINAL
-    planY += 1;
+        planY += 10;
 
-    if(planY > 250){
-        doc.addPage();
-        dibujarDisenoPagina(doc);
-        planY = 30;
-    }
+        // Control de salto de página
+        if (planY > 220) {
+            doc.addPage();
+            dibujarDisenoPagina(doc);
+            planY = 30;
+        }
 
-    doc.setTextColor(0, 51, 102);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(16);
-    doc.text("4. ¿Quieres llevar tu comunicación al siguiente nivel?", 30, planY);
+        // Título principal
+        doc.setTextColor(0, 0, 0);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(16);
+        doc.text("4. Conclusión", 20, planY);
 
-    doc.setDrawColor(226, 232, 240);
-    doc.line(20, planY + 3, 190, planY + 3);
+        planY += 15;
 
-    planY += 15;
+        // Configuración estética para los items
+        const colorTextoAzul = [44, 123, 185]; // Azul similar a la imagen
+        const xIcono = 25;
+        const xTexto = 38;
+        doc.setFontSize(13);
+        doc.setFont("helvetica", "normal");
 
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(11);
-    doc.setTextColor(51, 65, 85);
+        // --- ITEM 1: MICRO ROJO ---
+        // Dibujo del icono
+        doc.setDrawColor(211, 47, 47); // Rojo
+        doc.setLineWidth(0.8);
+        doc.circle(xIcono, planY - 1, 3, 'S'); // Cabeza mic
+        doc.line(xIcono - 3, planY + 2, xIcono + 3, planY - 4); // Línea tachado
+        // Texto
+        doc.setTextColor(colorTextoAzul[0], colorTextoAzul[1], colorTextoAzul[2]);
+        doc.text("Ser pasivo no es ser débil. Pero callarte constantemente tiene un precio emocional.", xTexto, planY);
 
-    const conclusion = doc.splitTextToSize([
-            "Conocer tu estilo es el primer paso.",
-            "Aprender a utilizarlo de forma estratégica es lo que realmente marca la diferencia.",
-            "",
-            "Según tus resultados, ahora ya sabes cuál es tu tendencia automática.",
-            "El siguiente paso es entrenarla para que juegue siempre a tu favor.",
-            "",
-            "En Retorika te ayudamos a convertir tu forma de comunicar en una herramienta de liderazgo, influencia y credibilidad.",
-            "",
-            "Ofrecemos:",
-            "- Formación para empresas",
-            
-            "- Programas presenciales para grupos",
-            
-            "- Cursos online grabados para trabajar a tu ritmo",
-            "",
-            "Si quieres dar el paso, estamos aquí.",
-            "",
-            "direccion@retorika.es",
-            "",
-            "646 419 652",
-            "asesoriaetorika.es",
-            "@retorika_academy"
-            ],170
-    );
+        planY += 15;
 
-    doc.text(conclusion, 30, planY);
+        // --- ITEM 2: BURBUJA VERDE ---
+        // Dibujo del icono
+        doc.setFillColor(34, 197, 94); // Verde
+        doc.roundedRect(xIcono - 3, planY - 4, 6, 5, 1, 1, 'F');
+        // Texto
+        doc.setTextColor(colorTextoAzul[0], colorTextoAzul[1], colorTextoAzul[2]);
+        doc.text("La asertividad no es confrontar. Es expresar sin atacar.", xTexto, planY);
 
-    // Pie de página
-    doc.setFontSize(8);
-    doc.setTextColor(148, 163, 184);
-    doc.text("© 2026 Retorika Intelligence. Documento generado para fines de desarrollo profesional.", 105, 284, {align: 'center'});
+        planY += 15;
 
-    doc.save("Informe_Analisis_Retorika.pdf");
+        // --- ITEM 3: FLECHAS AMARILLAS ---
+        // Dibujo del icono
+        doc.setFillColor(234, 179, 8); // Amarillo
+        doc.triangle(xIcono - 3, planY - 3, xIcono - 3, planY + 1, xIcono + 1, planY - 1, 'F');
+        doc.triangle(xIcono + 1, planY - 3, xIcono + 1, planY + 1, xIcono + 5, planY - 1, 'F');
+        // Texto
+        doc.setTextColor(colorTextoAzul[0], colorTextoAzul[1], colorTextoAzul[2]);
+        doc.text("Tu trabajo no es volverte más fuerte. Es volverte más claro.", xTexto, planY);
 
-    function crearBarra(nombre, valor, color){
+        // Pie de página final
+        doc.setFontSize(8);
+        doc.setTextColor(148, 163, 184);
+        doc.text("© 2026 Retorika Intelligence. Documento generado para fines de desarrollo profesional.", 105, 285, { align: 'center' });
 
-    return `
-    <div style="margin-bottom:18px">
+        doc.save("Informe_Analisis_Retorika.pdf");
 
-        <div style="display:flex;align-items:center;font-size:18px;font-weight:600;margin-bottom:6px">
-            <span style="width:10px;height:10px;background:${color};border-radius:50%;display:inline-block;margin-right:10px"></span>
-            ${nombre} ${valor}%
-        </div>
-
-        <div style="background:#e5e7eb;border-radius:20px;height:8px">
-            <div style="width:${valor}%;background:${color};height:8px;border-radius:20px"></div>
-        </div>
-
-    </div>
-    `;
-    }
+        
+    
 }
 </script>
 
