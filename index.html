@@ -483,18 +483,18 @@ function confirmarNombre(){
     let recomendaciones = [];
     //Recuadro azul del punto 2
     doc.setFillColor(238, 242, 255);
-    doc.roundedRect(20, 150, 170, 10, 1, 1, 'F');
+    doc.roundedRect(20, 170, 170, 10, 1, 1, 'F');
 
     if(res.as >= res.pa && res.as >= res.ag){
 // --- PUNTO 2 (ASERTIVO) ---
         doc.setTextColor(0, 51, 102);
         doc.setFont("helvetica", "bold");
         doc.setFontSize(17);
-        doc.text("2. Estilo de comunicación asertivo", 30, 140);
+        doc.text("2. Estilo de comunicación asertivo", 30, 160);
         doc.setDrawColor(226, 232, 240);
-        doc.line(20, 143, 190, 143);
+        doc.line(20, 163, 190, 163);
 
-        let curY = 156;
+        let curY = 176;
         doc.setFontSize(11);
         doc.setFont("helvetica", "normal");
         doc.setTextColor(51, 65, 85);
@@ -556,11 +556,11 @@ else if(res.pa >= res.as && res.pa >= res.ag){
         doc.setTextColor(0, 51, 102);
         doc.setFont("helvetica", "bold");
         doc.setFontSize(17);
-        doc.text("2. Estilo de comunicación pasivo", 30, 140);
+        doc.text("2. Estilo de comunicación pasivo", 30, 160);
         doc.setDrawColor(226, 232, 240);
-        doc.line(20, 143, 190, 143);
+        doc.line(20, 163, 190, 163);
 
-        let curY = 156;
+        let curY = 176;
         doc.setFontSize(11);
         doc.setFont("helvetica", "normal");
         doc.setTextColor(51, 65, 85);
@@ -624,11 +624,11 @@ else if(res.pa >= res.as && res.pa >= res.ag){
         doc.setTextColor(0, 51, 102);
         doc.setFont("helvetica", "bold");
         doc.setFontSize(17);
-        doc.text("2. Estilo de comunicación agresivo", 30, 140);
+        doc.text("2. Estilo de comunicación agresivo", 30, 160);
         doc.setDrawColor(226, 232, 240);
-        doc.line(20, 143, 190, 143);
+        doc.line(20, 163, 190, 163);
 
-        let curY = 156;
+        let curY = 176;
         doc.setFontSize(11);
         doc.setFont("helvetica", "normal");
         doc.setTextColor(51, 65, 85);
@@ -800,6 +800,217 @@ else if(res.pa >= res.as && res.pa >= res.ag){
 
         // Calculamos cuánto espacio ocupó para actualizar planY por si añades algo después
         planY += (lineasRegla.length * 5);
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 2 ==================
+        planY += 15;
+
+        doc.setFillColor(33,150,243);
+        doc.roundedRect(30, planY-5, 8, 8, 2,2,'F');
+        doc.setTextColor(255,255,255);
+        doc.setFont("helvetica","bold");
+        doc.text("2",32.9,planY+0.4);
+
+        doc.setTextColor(33,150,243);
+        doc.text("Di tu opinión antes de escuchar la del resto",42,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+
+        let txt2 = `Si siempre hablas después, tu cerebro aprende a adaptarse.
+
+        En una reunión o grupo:
+        Intervén de los primeros.
+        Aunque tu opinión no esté 100% formada.
+
+        Ejemplo:
+        “Yo lo veo más por este lado…”
+
+        No necesitas un discurso perfecto. Necesitas presencia.`;
+
+        let split2 = doc.splitTextToSize(txt2,160);
+        doc.text(split2,30,planY);
+        planY += split2.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 3 ==================
+        planY += 12;
+
+        doc.setFillColor(33,150,243);
+        doc.roundedRect(30, planY-5, 8, 8, 2,2,'F');
+        doc.setTextColor(255,255,255);
+        doc.setFont("helvetica","bold");
+        doc.text("3",32.9,planY+0.4);
+
+        doc.setTextColor(33,150,243);
+        doc.text("Usa una frase puente cuando algo te molesta",42,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt3=`En lugar de callártelo usa una fórmula neutra:
+
+        “Hay algo que me gustaría comentar.”
+        “Prefiero que lo hagamos de otra forma.”
+        “Eso no me termina de encajar.”
+
+        No es confrontar. Es introducir tu límite sin agresividad.`;
+
+        let split3=doc.splitTextToSize(txt3,160);
+        doc.text(split3,30,planY);
+        planY+=split3.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 4 ==================
+        planY+=12;
+
+        doc.setFillColor(33,150,243);
+        doc.roundedRect(30, planY-5, 8, 8, 2,2,'F');
+        doc.setTextColor(255,255,255);
+        doc.setFont("helvetica","bold");
+        doc.text("4",32.9,planY+0.4);
+
+        doc.setTextColor(33,150,243);
+        doc.text("No sonrías automáticamente cuando algo te incomoda",42,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt4=`Muchos perfiles pasivos suavizan con sonrisa o risa nerviosa.
+
+        Ejercicio práctico:
+        Cuando algo no te gusta mantén expresión neutra.
+
+        No rellenes el silencio.
+        Sostén 2 segundos antes de responder.
+
+        El silencio también comunica.`;
+
+        let split4=doc.splitTextToSize(txt4,160);
+        doc.text(split4,30,planY);
+        planY+=split4.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 5 ==================
+        planY+=12;
+
+        doc.setFillColor(33,150,243);
+        doc.roundedRect(30, planY-5, 8, 8, 2,2,'F');
+        doc.setTextColor(255,255,255);
+        doc.setFont("helvetica","bold");
+        doc.text("5",32.9,planY+0.4);
+
+        doc.setTextColor(33,150,243);
+        doc.text("Empieza por límites pequeños",42,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt5=`No empieces por la conversación más difícil.
+
+        Empieza por cosas como:
+
+        Elegir restaurante.
+        Cambiar una hora que no te encaja.
+        Decir que no a un plan menor.
+
+        El músculo del límite se entrena gradualmente.`;
+
+        let split5=doc.splitTextToSize(txt5,160);
+        doc.text(split5,30,planY);
+        planY+=split5.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 6 ==================
+        planY+=12;
+
+        doc.setFillColor(33,150,243);
+        doc.roundedRect(30, planY-5, 8, 8, 2,2,'F');
+        doc.setTextColor(255,255,255);
+        doc.setFont("helvetica","bold");
+        doc.text("6",32.9,planY+0.4);
+
+        doc.setTextColor(33,150,243);
+        doc.text("Cambia la pregunta interna",42,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt6=`En lugar de preguntarte:
+
+        “¿Y si se enfada?”
+
+        Pregúntate:
+
+        “¿Qué pasa si siempre cedo yo?”
+
+        Eso cambia tu foco del miedo al coste real.`;
+
+        let split6=doc.splitTextToSize(txt6,160);
+        doc.text(split6,30,planY);
+        planY+=split6.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 7 ==================
+        planY+=12;
+
+        doc.setFillColor(33,150,243);
+        doc.roundedRect(30, planY-5, 8, 8, 2,2,'F');
+        doc.setTextColor(255,255,255);
+        doc.setFont("helvetica","bold");
+        doc.text("7",32.9,planY+0.4);
+
+        doc.setTextColor(33,150,243);
+        doc.text("Detecta acumulación",42,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt7=`Si te descubres pensando:
+
+        “Ya da igual.”
+        “Paso.”
+        “Me lo guardo.”
+
+        Es señal de acumulación.
+
+        No esperes a estar saturado.
+        Habla cuando la molestia está en 3/10, no en 8/10.`;
+
+        let split7=doc.splitTextToSize(txt7,160);
+        doc.text(split7,30,planY);
+        planY+=split7.length*6;
         
     } 
     //PARA PERFIL ASERTIVO
@@ -876,6 +1087,7 @@ else if(res.pa >= res.as && res.pa >= res.ag){
 
         // Calculamos cuánto espacio ocupó para actualizar planY por si añades algo después
         planY += (lineasRegla.length * 5);
+        
         
     }
     //PARA PERFIL AGRESIVO
