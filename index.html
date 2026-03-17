@@ -999,20 +999,10 @@ else if(res.pa >= res.as && res.pa >= res.ag){
         doc.text("Consejos muy concretos para poner en práctica:", 30, planY);
 
         planY += 15;
-        
-        // Dibujo del cuadrado azul con el "1"
-        doc.setFillColor(33, 150, 243);
-        doc.roundedRect(30, planY - 5, 8, 8, 2, 2, 'F');
-        doc.setTextColor(255, 255, 255);
-        doc.setFont("helvetica", "bold");
-        doc.text("1", 32.9, planY + 0.4);
 
-        // Texto al lado del 1
-        doc.setTextColor(33, 150, 243);
-        doc.text("No expliques de más cuando pongas un límite", 42, planY);
-        doc.setFont("helvetica", "normal");
-        doc.setTextColor(100, 116, 139);
-
+        doc.setFont("helvetica","bold");
+        doc.setTextColor(33,150,243);
+        doc.text("1. No expliques de más cuando pongas un límite",30,planY);
 
         planY += 12;
         doc.setTextColor(0, 51, 102);
@@ -1041,6 +1031,112 @@ else if(res.pa >= res.as && res.pa >= res.ag){
         doc.setFont("helvetica", "normal");
         doc.setTextColor(51, 65, 85);
         const textoRegla = "No se trata de dialogar mejor. Se trata de saber cuándo dialogar… y cuándo simplemente decidir.";
+        // ================== CONSEJO 2 ==================
+        planY += 15;
+
+        doc.setFont("helvetica","bold");
+        doc.setTextColor(33,150,243);
+        doc.text("2. No asumas siempre el rol de mediador/a",30,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+
+        let txt2 = `Si en cada conflicto eres quien calma, explica, equilibra…
+
+        Pregúntate:
+        “¿Estoy resolviendo… o estoy cargando con algo que no es mío?”
+        A veces tu equilibrio hace que otros no crezcan.`;
+       
+
+        let split2 = doc.splitTextToSize(txt2,160);
+        doc.text(split2,30,planY);
+        planY += split2.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 3 ==================
+        planY += 12;
+
+        doc.setFont("helvetica","bold");
+        doc.setTextColor(33,150,243);
+        doc.text("3. Sube un punto la firmeza cuando detectes abuso",30,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt3=`Ser calmado/a no significa permitir repetición. Si algo se repite, cambia el tono:
+
+        Primera vez:
+        “Prefiero que no lo hagas.”
+
+        Segunda vez:
+        “Te pedí que no lo hicieras.”
+
+        La firmeza progresiva protege tu autoridad.`;
+
+        let split3=doc.splitTextToSize(txt3,160);
+        doc.text(split3,30,planY);
+        planY+=split3.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 4 ==================
+        planY+=12;
+
+
+        doc.setFont("helvetica","bold");
+        doc.setTextColor(33,150,243);
+        doc.text("4. Cuida tu energía con perfiles muy intensos",30,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt4=`Si hablas con alguien agresivo:
+
+        Reduce explicación.
+        Usa frases más cortas.
+        Mantén contacto visual firme.
+        No sonrías para suavizar.
+
+        El exceso de suavidad puede leerse como debilidad.`;
+
+        let split4=doc.splitTextToSize(txt4,160);
+        doc.text(split4,30,planY);
+        planY+=split4.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 5 ==================
+        planY+=12;
+
+        doc.setFont("helvetica","bold");
+        doc.setTextColor(33,150,243);
+        doc.text("5. Acepta que no siempre gustarás",30,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt5=`La asertividad real incluye tolerar que alguien no esté de acuerdo contigo.        
+
+        Si buscas que todos lo entiendan y estén cómodos, ya no es asertividad, es necesidad
+        de aprobación.`;
+
+        let split5=doc.splitTextToSize(txt5,160);
+        doc.text(split5,30,planY);
+        planY+=split5.length*6;
         
         // Dividimos el texto para que quepa en un ancho de 125mm
         const lineasRegla = doc.splitTextToSize(textoRegla, 125);
@@ -1076,20 +1172,10 @@ else if(res.pa >= res.as && res.pa >= res.ag){
         doc.text("Se trata de hablar con más inteligencia estratégica y empatía.", 30, planY);
 
         planY += 15;
-        
-        // Dibujo del cuadrado azul con el "1"
-        doc.setFillColor(33, 150, 243);
-        doc.roundedRect(30, planY - 5, 8, 8, 2, 2, 'F');
-        doc.setTextColor(255, 255, 255);
-        doc.setFont("helvetica", "bold");
-        doc.text("1", 32.9, planY + 0.4);
 
-        // Texto al lado del 1
-        doc.setTextColor(33, 150, 243);
-        doc.text("Reduce el lenguaje confrontacional", 42, planY);
-        doc.setFont("helvetica", "normal");
-        doc.setTextColor(100, 116, 139);
-
+        doc.setFont("helvetica","bold");
+        doc.setTextColor(33,150,243);
+        doc.text("1. Reduce el lenguaje confrontacional",30,planY);
 
         planY += 12;
         doc.setTextColor(0, 51, 102);
@@ -1118,6 +1204,175 @@ else if(res.pa >= res.as && res.pa >= res.ag){
         doc.setFont("helvetica", "normal");
         doc.setTextColor(51, 65, 85);
         const textoRegla = "No es suavizar, es eliminar la sensación de ataque.";
+
+        // ================== CONSEJO 2 ==================
+        planY += 15;
+
+        doc.setFont("helvetica","bold");
+        doc.setTextColor(33,150,243);
+        doc.text("2. Céntrate en la acción, no en la persona",30,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+
+        let txt2 = `Ataca el hecho, no la identidad.
+
+        Incorrecto: “Has hecho mal la tarea.”
+        Correcto: “A esta tarea le falta incorporar…”
+
+        Cuando señalas al sujeto, el otro se defiende.
+        Cuando señalas la acción, el otro escucha.`;
+
+        let split2 = doc.splitTextToSize(txt2,160);
+        doc.text(split2,30,planY);
+        planY += split2.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 3 ==================
+        planY += 12;
+
+        doc.setFont("helvetica","bold");
+        doc.setTextColor(33,150,243);
+        doc.text("3. Sustituye afirmaciones por preguntas estratégicas",30,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt3=`En lugar de imponer, guía.
+
+        Incorrecto: “Eso no funciona.”
+        Correcto: “¿Cómo crees que podríamos mejorar los fallos que hay?”
+
+        Una pregunta bien hecha reduce resistencia.`;
+
+        let split3=doc.splitTextToSize(txt3,160);
+        doc.text(split3,30,planY);
+        planY+=split3.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 4 ==================
+        planY+=12;
+
+
+        doc.setFont("helvetica","bold");
+        doc.setTextColor(33,150,243);
+        doc.text("4. Baja la intensidad, no el contenido",30,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt4=`No cambies lo que dices. Cambia cómo lo dices.
+
+        Reduce velocidad.
+        Baja ligeramente el volumen.
+        Haz pausas.
+
+        Un mensaje dicho con calma transmite más autoridad que uno dicho con urgencia.`;
+
+        let split4=doc.splitTextToSize(txt4,160);
+        doc.text(split4,30,planY);
+        planY+=split4.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 5 ==================
+        planY+=12;
+
+        doc.setFont("helvetica","bold");
+        doc.setTextColor(33,150,243);
+        doc.text("5. Practica escucha activa real",30,planY);
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt5=`No esperes tu turno para hablar. Haz al menos una de estas cosas antes de responder:
+
+        Resume lo que el otro dijo.
+        “Entonces, lo que planteas es…”
+
+        Valida parcialmente.
+        “Entiendo por qué lo ves así.”
+
+        Eso no te quita razón. Te da credibilidad.`;
+  
+
+        let split5=doc.splitTextToSize(txt5,160);
+        doc.text(split5,30,planY);
+        planY+=split5.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 6 ==================
+        planY+=12;
+
+        doc.setFont("helvetica","bold");
+        doc.setTextColor(33,150,243);
+        doc.text("6. Evita el tono superior",30,planY);        
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt6=`Cuando suenas dominante o superior, el mensaje se percibe como ataque.
+
+        Cuando suenas firme pero neutral, el mensaje se percibe como liderazgo.
+
+        La diferencia está en:
+
+        No interrumpir.
+        No ironizar.
+        No usar sarcasmo.
+        No exagerar con “siempre” o “nunca”. Es mejor utilizar un tono más empático.`;
+
+        let split6=doc.splitTextToSize(txt6,160);
+        doc.text(split6,30,planY);
+        planY+=split6.length*6;
+
+        if(planY > 240){
+        doc.addPage();
+        dibujarDisenoPagina(doc);
+        planY = 30;
+        }
+
+        // ================== CONSEJO 7 ==================
+        planY+=12;
+
+        doc.setFont("helvetica","bold");
+        doc.setTextColor(33,150,243);
+        doc.text("7. Mide el resultado, no solo la claridad",30,planY); 
+
+        planY+=8;
+        doc.setFont("helvetica","normal");
+        doc.setTextColor(51,65,85);
+        let txt7=`Después de hablar, pregúntate:
+
+        ¿El otro se abrió o se cerró?
+        ¿Escuchó o se defendió?
+        ¿Hubo avance o solo imposición?
+
+        Si el otro se cierra, tu estilo te está restando eficacia.`;
+
+        let split7=doc.splitTextToSize(txt7,160);
+        doc.text(split7,30,planY);
+        planY+=split7.length*6;
         
         // Dividimos el texto para que quepa en un ancho de 125mm
         const lineasRegla = doc.splitTextToSize(textoRegla, 125);
